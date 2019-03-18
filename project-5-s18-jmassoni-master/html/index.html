@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Head contains metadata on the whole document -->
+
+<head>
+    <title>Where For Art Thou Search Term?</title>
+
+    <style>
+        body {
+            font-family: "Helvetica", "Arial", sans-serif;
+            font-size: 18pt;
+            color: #333333;
+            background-color: #D2B48C;
+            margin: 40px auto;
+            max-width: 640px;
+        }
+
+        div {
+            margin-top: 40px;
+        }
+
+        button {
+            font-family: "Helvetica", "Arial", sans-serif;
+            font-size: 14pt;
+        }
+
+        input {
+            font-family: "Helvetica", "Arial", sans-serif;
+            font-size: 14pt;
+            width: 50%;
+        }
+    </style>
+    
+</head>
+
+<!-- Body contains the page's content -->
+
+<body>
+    <h2>Where For Art Thou Search Term?</h2>
+    <img src="http://www.unf.edu/uploadedImages/aa/coas/english/english%20banner%20shakespeare.jpg" 
+alt="Thou!" width="965" height="235" />
+    <p>Thou musteth input thine term of search.</p>
+
+    <input type="text" id="inputBox" />
+    <button type="button" id="submitButton"> Put Forth </button>
+
+
+    <!-- The div tag creates a named region of the page -->
+    <div id="responseDiv"></div>
+
+    <!-- script tag contains JavaScript that interacts with page elements -->
+    <script>
+        // Set a listener function for the button click
+        document.getElementById('submitButton').onclick = function() {
+
+            // Get the current string in the text box
+            var input = document.getElementById('inputBox').value;
+
+            var oReq = new XMLHttpRequest();
+            oReq.addEventListener("load", responseListener);
+            oReq.open("GET", "https://cms330-jmassoni.c9users.io/query?word=" + input);
+            oReq.send();
+        }
+
+        function responseListener() {
+            document.getElementById('responseDiv').innerHTML = this.responseText;
+        }
+    </script>
+    
+</body>
+
+</html>
